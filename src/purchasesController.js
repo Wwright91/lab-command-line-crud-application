@@ -32,14 +32,14 @@ function show(purchases, purchaseId) {
 }
 
 function edit(purchases, purchaseId, updatedPurchase) {
-  console.log(updatedPurchase)
-  const [name, amount] = updatedPurchase
+  console.log(updatedPurchase);
+  const [name, amount] = updatedPurchase;
   const index = purchases.findIndex((purchase) => purchase.id === purchaseId);
   if (index > -1) {
-    purchases[index].id = purchaseId
-    purchases[index].name = name
-    purchases[index].amount = +amount
-    purchases[index].donation = +(Math.ceil(amount) - amount).toFixed(2)
+    purchases[index].id = purchaseId;
+    purchases[index].name = name;
+    purchases[index].amount = +amount;
+    purchases[index].donation = +(Math.ceil(amount) - amount).toFixed(2);
 
     inform("purchase successfully updated");
     return purchases;
@@ -49,4 +49,15 @@ function edit(purchases, purchaseId, updatedPurchase) {
   }
 }
 
-module.exports = { create, index, show, edit };
+function destroy(purchases, purchaseId) {
+  const index = purchases.findIndex((purchase) => purchase.id === purchaseId);
+  if (index > -1) {
+    purchases.splice(index, 1);
+    inform("purchase successfully removed from collection");
+  } else {
+    inform("purchase not found. No action taken");
+  }
+  return purchases;
+}
+
+module.exports = { create, index, show, edit, destroy };
