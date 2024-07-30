@@ -13,4 +13,8 @@ function create(purchases, purchaseDetails) {
   return purchases;
 }
 
-module.exports = { create };
+function index(purchases) {
+  return purchases.map((purchase) => purchase.id + " " + purchase.name).join("\n");
+}
+
+module.exports = { create, index };
