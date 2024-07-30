@@ -1,4 +1,7 @@
 const { nanoid } = require("nanoid");
+const chalk = require("chalk");
+
+const inform = console.log;
 
 function create(purchases, purchaseDetails) {
   console.log(purchaseDetails);
@@ -14,7 +17,36 @@ function create(purchases, purchaseDetails) {
 }
 
 function index(purchases) {
-  return purchases.map((purchase) => purchase.id + " " + purchase.name).join("\n");
+  return purchases
+    .map((purchase) => purchase.id + " " + purchase.name)
+    .join("\n");
 }
 
-module.exports = { create, index };
+function show(purchases, purchaseId) {
+  const purchase = purchases.find((purchase) => purchase.id === purchaseId);
+  return `${chalk.green("id")} ${purchase.id} ${chalk.green("name")} ${
+    purchase.name
+  } ${chalk.green("amount")} ${purchase.amount} ${chalk.green(
+    "donation"
+  )} ${chalk.yellow(purchase.donation)}`;
+}
+
+function edit(purchases, purchaseId, updatedPurchase) {
+  console.log(updatedPurchase)
+  const [name, amount] = updatedPurchase
+  const index = purchases.findIndex((purchase) => purchase.id === purchaseId);
+  if (index > -1) {
+    purchases[index].id = purchaseId
+    purchases[index].name = name
+    purchases[index].amount = +amount
+    purchases[index].donation = +(Math.ceil(amount) - amount).toFixed(2)
+
+    inform("purchase successfully updated");
+    return purchases;
+  } else {
+    inform("purchase not found. No action taken");
+    return purchases;
+  }
+}
+
+module.exports = { create, index, show, edit };

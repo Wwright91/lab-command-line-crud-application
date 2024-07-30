@@ -1,5 +1,1 @@
-[
-  { "id": "VxnD", "name": "chips", "amount": 1.75, "donation": 0.25 },
-  { "id": "hNXJ", "name": "steak", "amount": 17.33, "donation": 0.67 },
-  { "id": "gZg4", "name": "tv", "amount": 153.52, "donation": 0.48 }
-]
+[{"id":"VxnD","name":"chips","amount":1.75,"donation":0.25},{"id":"hNXJ","name":"steak","amount":17.33,"donation":0.67},{"id":"gZg4","name":"TV","amount":149.88,"donation":0.12}]
