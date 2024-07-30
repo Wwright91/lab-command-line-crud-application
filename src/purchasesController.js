@@ -26,9 +26,9 @@ function show(purchases, purchaseId) {
   const purchase = purchases.find((purchase) => purchase.id === purchaseId);
   return `${chalk.green("id")} ${purchase.id} ${chalk.green("name")} ${
     purchase.name
-  } ${chalk.green("amount")} ${purchase.amount} ${chalk.green(
+  } ${chalk.green("amount")} $ ${purchase.amount} ${chalk.green(
     "donation"
-  )} ${chalk.yellow(purchase.donation)}`;
+  )} ${chalk.yellow("$ " + purchase.donation)}`;
 }
 
 function edit(purchases, purchaseId, updatedPurchase) {
@@ -60,4 +60,14 @@ function destroy(purchases, purchaseId) {
   return purchases;
 }
 
-module.exports = { create, index, show, edit, destroy };
+function total(purchases) {
+  let sum = 0
+
+  for (let i = 0; i < purchases.length; i++){
+    sum += purchases[i].donation
+  }
+
+  return `${chalk.blue("Total donations:")} $ ${sum}` 
+}
+
+module.exports = { create, index, show, edit, destroy, total };

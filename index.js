@@ -5,6 +5,7 @@ const {
   show,
   edit,
   destroy,
+  total,
 } = require("./src/purchasesController");
 
 const inform = console.log;
@@ -39,6 +40,9 @@ function run() {
     case "destroy":
       updatedPurchasesList = destroy(purchasedProducts, purchase);
       writeToFile = true;
+      break;
+    case "total":
+      inform(total(purchasedProducts));
       break;
     default:
       inform("There was an error.");
