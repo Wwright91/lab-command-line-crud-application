@@ -4,7 +4,9 @@ const chalk = require("chalk");
 const inform = console.log;
 
 function create(purchases, purchaseDetails) {
-  console.log(purchaseDetails);
+  if (purchaseDetails.length !== 2) {
+    throw new Error('purchaseDetails must have exactly 2 elements');
+  }
   const [name, amount] = purchaseDetails;
   const purchase = {
     id: nanoid(4),
